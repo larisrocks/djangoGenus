@@ -8,9 +8,29 @@
 <body>
     <h1>Cursos disponíveis</h1>
     <ul class="cursos-query">
-        {% for curso in cursos %}
+        {% for curso in paginas %}
         <li><a href="{% url 'cursos:resumo' curso.slug %}">{{curso.title}}</a></li>
         {% endfor %}
+        <br><br><div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; primeira</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">anterior</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+        
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">proxima</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">ultima &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
     </ul>
 </body>
 </html>
+
+<!--amigos eu vou ajeitar ainda como passar pra ca a parte da listview que traz 
+    o page_obj mas quis botar logo o resto no git pra ver se para de dar erro -->
