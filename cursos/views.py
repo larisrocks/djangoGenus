@@ -45,7 +45,8 @@ def buscar_cursos(request):
     if request.user.is_authenticated:
         cursos = Course.objects.all()
         cursos_paginator = Paginator(cursos, 1)
-        paginas = cursos_paginator.get_page(1)
+        num_pagina = request.GET.get('paginas')
+        paginas = cursos_paginator.get_page(num_pagina)
         cursos_dict = {
             'cursos': cursos,
             'paginas': paginas,
@@ -233,14 +234,6 @@ def criar_post(request, curso_slug, modulo_id):
             return redirect('/genus/inicio/')
     else:
         return redirect('/')
-
-
-# def criar_post(request, curso_slug, modulo_id):
-#     if request.user.is_authenticated:
-#         dono=False
-        
-#     else:
-#         return redirect('/')
 
 
 # class ContentCreateUpdateView(TemplateResponseMixin, View):
