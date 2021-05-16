@@ -19,7 +19,8 @@
                 {% endif %}
 
                 <span class="current">
-                    Página {{ paginas.number }} de {{ paginas.paginator.num_pages }}.
+                    {% load humanize %}
+                    Página {{ paginas.number|apnumber }} de {{ paginas.paginator.num_pages|apnumber }}.
                 </span>
         
                 {% if paginas.has_next %}
@@ -31,6 +32,3 @@
     </ul>
 </body>
 </html>
-
-<!--amigos eu vou ajeitar ainda como passar pra ca a parte da listview que traz 
-    o page_obj mas quis botar logo o resto no git pra ver se para de dar erro -->
